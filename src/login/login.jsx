@@ -30,9 +30,15 @@ const Login = () => {
   }
 
   return (
-    <>
-      <div className="bg-[url('../../src/assets/images/abstract-digital-technology-background-with-concept-security-vector.jpg')] w-[100%] h-[100vh] bg-no-repeat bg-center">
-        <div className="flex justify-between px-[100px] py-[140px] text-white">
+    <div className="relative w-full h-screen">
+      <img
+        className="absolute w-full h-full object-cover"
+        src="https://ivdel-dveri.ru/wp-content/uploads/2019/05/maintenance_page_bg-1536x864.jpg"
+        alt=""
+      />
+      <div className="absolute inset-0 bg-black opacity-40"></div>
+      <div className="flex items-center justify-center h-full">
+        <div className="bg-white p-10 rounded-lg shadow-lg w-96 z-10 animate-fade-in-up absolute left-[750px]">
           <Formik
             initialValues={{
               userName: "",
@@ -43,52 +49,59 @@ const Login = () => {
             }}
           >
             <Form>
-              <div>
-                <h1 className="text-[25px] text-center mb-[15px] font-[650]">
-                  {t("Login")}
-                </h1>
-                <Field
-                  className="w-[400px] mb-[20px] py-[14px] px-[20px] rounded-md shadow-md text-[17px] font-[600] bg-transparent border-[white] border-[1px] border-[solid]"
-                  name="userName"
-                  placeholder="Acount"
-                />{" "}
-                <br />
-                <Field
-                  className="w-[400px] mb-[15px] py-[14px] px-[20px] rounded-md shadow-md text-[17px] font-[600] bg-transparent border-[white] border-[1px] border-[solid]"
-                  name="password"
-                  placeholder="password"
-                  type="password"
-                />{" "}
-                <br />
-                <h1 className="text-[17px] mb-[15px] font-[700] w-[420px]">
-                  {t("By using this form you agree  with our terms of use")}
-                </h1>
-                <p className="mb-[15px] text-[15px] text-[white]">
-                  {t("Login by phone number")}
+              <h1 className="text-4xl font-bold text-center mb-6 text-gray-800">
+                {t("Login")}
+              </h1>
+              <Field
+                className="w-full mb-4 p-4 rounded bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition duration-200"
+                name="userName"
+                placeholder="Username"
+              />
+              <Field
+                className="w-full mb-4 p-4 rounded bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition duration-200"
+                name="password"
+                placeholder="Password"
+                type="password"
+              />
+              <Button
+                sx={{
+                  width: "100%",
+                  height: "50px",
+                  marginTop: "10px",
+                  background: "linear-gradient(to right, #667eea, #764ba2)",
+                  color: "#fff",
+                  boxShadow: "0 4px 14px 0 rgba(118, 75, 162, 0.39)",
+                  "&:hover": {
+                    background: "linear-gradient(to right, #764ba2, #667eea)",
+                    transform: "scale(1.05)",
+                    transition: "transform 0.3s ease",
+                  },
+                }}
+                type="submit"
+                variant="contained"
+              >
+                {t("Login")}
+              </Button>
+              <div className="text-center mt-4">
+                <p className="text-gray-500">
+                  {t("Not a member?")}{" "}
+                  <a href="#" className="text-blue-500 hover:underline">
+                    {t("Sign Up")}
+                  </a>
                 </p>
-                <div className="flex items-center mb-[15px]">
-                  <p className="w-[160px] border-[1px]  border-[#white]"></p>
-                  <p className="text-[20px] font-[700] mx-[20px] text-[white]">
-                    {t("or")}
-                  </p>
-                  <p className="w-[160px] border-[1px] border-[#white]"></p>
-                </div>
-                {
-                  <Button
-                    sx={{ width: "400px", height: "50px" }}
-                    type="submit"
-                    variant="contained"
-                  >
-                    {t("Log In")}
-                  </Button>
-                }
               </div>
             </Form>
           </Formik>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
 export default Login;
+
+
+
+
+
+

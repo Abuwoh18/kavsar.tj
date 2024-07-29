@@ -23,6 +23,7 @@ import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import { NestedMenu } from "../../components/menu/menu";
 import { setSearch } from "../../reducer/todoList/todoListSlice";
+import Switcher from "../../switcher/switcher";
 
 const Layout = () => {
   const { t, i18n } = useTranslation();
@@ -53,13 +54,12 @@ const Layout = () => {
   };
   const [openMenu, setOpenMenu] = React.useState(false);
 
-
-  let search = useSelector((state) => state.todoList.search)
-  let dispatch = useDispatch()
+  let search = useSelector((state) => state.todoList.search);
+  let dispatch = useDispatch();
 
   return (
     <div>
-      <div className="bg-[#1a3274] w-[100%] px-[10px] py-[10px] flex items-center text-[white] justify-between">
+      <div className="bg-[#1a3274] w-[100%] px-[10px] py-[10px] flex items-center text-[white] justify-between dark:bg-[#080F1D]">
         <div className="flex items-center ml-[15px]">
           <button className="mr-[10px]">
             <PlaceIcon sx={{ width: "20px", height: "20px" }} />
@@ -87,46 +87,56 @@ const Layout = () => {
         </div>
       </div>
 
-      <div className="px-[25px] py-[10px] bg-[white] flex items-center justify-between shadow-md w-[100%]  relative">
+      <div className="px-[25px] py-[10px] bg-[white] flex items-center justify-between shadow-md w-[100%] sticky top-[0] z-[10] dark:bg-[#080F1D]">
         <div className="flex items-center">
           <Link to={"/"}>
             <img
-              className="w-[120px] h-[80px] mr-[50px]"
-              src="https://salom.alif.tj/api/newsalom/v0/images/bvlftc7iempc3jpcot10.png"
+              className="w-[100px] h-[80px] mr-[50px] lg1:mr-[0px]"
+              src={"src/assets/images/logo.svg"}
               alt=""
             />
           </Link>
 
           <NestedMenu />
 
-          <Paper
-            component="form"
-            sx={{
-              p: "1px 4px",
-              display: "flex",
-              alignItems: "center",
-              borderRadius: "10px",
-              width: 600,
-              marginLeft: "30px",
-              marginRight: "20px",
-            }}
-          >
-            <IconButton sx={{ p: "12px" }} aria-label="menu">
-              <MenuIcon />
-            </IconButton>
-            <InputBase
-              value={search}
-              onChange={(el) => dispatch(setSearch(el.target.value))}
-              sx={{ ml: 1, flex: 1, color: "#565555" }}
-              placeholder={t("Search")}
-              inputProps={{ "aria-label": "search google maps" }}
-            />
-            <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-              <SearchIcon />
-            </IconButton>
-          </Paper>
+          <div className="w-[600px] ab:w-[560px] lg:w-[450px] lg1:w-[400px] md:w-[350px] sm1:hidden">
+            <Paper
+              component="form"
+              sx={{
+                p: "1px 4px",
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "7px",
+                width: "100%",
+                marginLeft: "30px",
+                marginRight: "20px",
+              }}
+            >
+              <IconButton
+                sx={{ p: "12px", color: "#1a3274" }}
+                aria-label="menu"
+              >
+                <MenuIcon />
+              </IconButton>
+              <InputBase
+                value={search}
+                onChange={(el) => dispatch(setSearch(el.target.value))}
+                sx={{ ml: 1, flex: 1, color: "#1a3274" }}
+                placeholder={t("Search")}
+                inputProps={{ "aria-label": "search google maps" }}
+              />
+              <IconButton
+                type="button"
+                sx={{ p: "10px", color: "#1a3274" }}
+                aria-label="search"
+              >
+                <SearchIcon />
+              </IconButton>
+            </Paper>
+          </div>
         </div>
         <div className="flex items-center text-center">
+          <Switcher />
           <div>
             <div>
               <Button
@@ -136,7 +146,9 @@ const Layout = () => {
                 aria-expanded={open11 ? "true" : undefined}
                 onClick={handleClick11}
               >
-                <GTranslateIcon sx={{ width: "35px", height: "40px" }} />
+                <GTranslateIcon
+                  sx={{ width: "30px", height: "35px", color: "lightblue" }}
+                />
               </Button>
             </div>
             <Menu
@@ -191,14 +203,14 @@ const Layout = () => {
             </Menu>
           </div>
 
-          <div className="mx-[5px]">
+          <div className="mx-[2px]">
             <Link to={"/cart"}>
               <button>
                 <ShoppingCartIcon
-                  sx={{ width: "40px", height: "40px", color: "#1c2a74" }}
+                  sx={{ width: "35px", height: "35px", color: "#0F3460" }}
                 />
               </button>
-              <p className="absolute top-[15px] right-[78px] bg-[red] text-[white] w-[20px] h-[20px] rounded-full">
+              <p className="absolute top-[17px] right-[76px] bg-[red] text-[white] w-[17px] h-[17px] rounded-full text-[12px] text-center">
                 {data1.length}
               </p>
             </Link>
@@ -212,7 +224,9 @@ const Layout = () => {
               aria-expanded={open1 ? "true" : undefined}
               onClick={handleClick}
             >
-              <AccountCircleIcon sx={{ width: "35px", height: "40px" }} />
+              <AccountCircleIcon
+                sx={{ width: "35px", height: "35px", color: "lightblue" }}
+              />
             </Button>
             <Menu
               onChange={(e) => TranslateClick(el.target.value)}
@@ -240,101 +254,104 @@ const Layout = () => {
 
       <Outlet />
 
-      <div
-        style={{ backgroundColor: "rgb(15,52,96" }}
-        className="text-white p-10 w-[100%] h-[660px] py-[130px]"
-      >
-        <div className="container mx-auto flex flex-col md:flex-row justify-between space-y-8 md:space-y-0">
-          <div className="space-y-5 w-[20%] mr-[40px]">
-            <h2 className="font-bold text-[20px]">{t("About Us")}</h2>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="hover:underline">
-                  {t("Career")}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  {t("Our stores")}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  {t("Terms and Conditions")}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  {t("Privacy Policy")}
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="space-y-4 w-[20%] mr-[70px]">
-            <h2 className="font-bold text-[20px]">{t("For buyers")}</h2>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="hover:underline">
-                  {t("Help Center")}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  {t("How to buy")}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  {t("Track your order")}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  {t("Corporate and wholesale purchases")}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  {t("Returns and Refunds")}
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="space-y-5">
-            <h2 className="font-bold text-[20px]">{t("Contact")}</h2>
-            <address className="not-italic space-y-2">
-              <p>{t("734000 Dushanbe Nusratullo Mahsum 9")}</p>
-              <p>
-                {t("Email")}:{" "}
+      <div className="text-white p-10 w-[100%] h-[660px] py-[130px] bg-[#0F3460] dark:bg-[#0e1524]">
+        <div className="flex">
+          <div className="mr-[50px] flex lg:flex-wrap">
+            <div className="space-y-5 w-[20%] mr-[50px] lg:w-[35%] md:w-[25%] sm:w-[30%]">
+              <h2 className="font-bold text-[20px]">{t("About Us")}</h2>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#" className="hover:underline">
+                    {t("Career")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    {t("Our stores")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    {t("Terms and Conditions")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    {t("Privacy Policy")}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="space-y-4 w-[35%] mr-[50px] lg:w-[42%] md:w-[35%] md:relative left-[40px] sm2:w-[40%]">
+              <h2 className="font-bold text-[20px]">{t("For buyers")}</h2>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#" className="hover:underline">
+                    {t("Help Center")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    {t("How to buy")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    {t("Track your order")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    {t("Corporate and wholesale purchases")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    {t("Returns and Refunds")}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="space-y-5 w-[30%] lg:mt-[30px] lg:w-[50%]">
+              <h2 className="font-bold text-[20px]">{t("Contact")}</h2>
+              <address className="not-italic space-y-2">
+                <p>{t("734000 Dushanbe Nusratullo Mahsum 9")}</p>
+                <p>
+                  {t("Email")}:{" "}
+                  <a
+                    href="mailto:support@kavsar.tj"
+                    className="hover:underline"
+                  >
+                    {t("support@kavsar.tj")}
+                  </a>
+                </p>
+                <p>+992 307 300 300</p>
+              </address>
+              <div className="flex space-x-4">
                 <a
-                  href="mailto:support@kavsar.tj"
-                  className="hover:underline"
+                  href="#"
+                  aria-label="Twitter"
+                  className="hover:text-gray-400"
                 >
-                  {t("support@kavsar.tj")}
+                  <i className="fab fa-twitter"></i>
                 </a>
-              </p>
-              <p>+992 307 300 300</p>
-            </address>
-            <div className="flex space-x-4">
-              <a href="#" aria-label="Twitter" className="hover:text-gray-400">
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="hover:text-gray-400"
-              >
-                <i className="fab fa-instagram"></i>
-              </a>
+                <a
+                  href="#"
+                  aria-label="Instagram"
+                  className="hover:text-gray-400"
+                >
+                  <i className="fab fa-instagram"></i>
+                </a>
+              </div>
             </div>
           </div>
-          <div className="flex flex-col items-center space-y-4 w-[400px]">
+          <div className="w-[430px] border-[1px] border-[solid] border-[grey] rounded-3xl py-[30px] ab:w-[350px] lg:w-[250px] p-[30px] lg:h-[400px] sm:hidden">
             <img
-              className="w-[400px] h-[400px] relative left-[40px] mb-[5px]"
-              src="../../../src/assets/images/Снимок экрана 2024-07-23 173018.png"
+              className="w-[100%] h-[250px] relative mb-[5px] rounded-xl"
+              src="../../../src/assets/images/masterok-mobile.png"
               alt=""
             />
-            <p className="text-center relative left-[40px]">
+            <p className="text-center relative w-[300px] mt-[30px] lg:w-[200px]">
               {t("Point your camera and download the free MasterOK app")}
             </p>
           </div>

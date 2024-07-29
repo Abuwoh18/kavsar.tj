@@ -42,7 +42,7 @@ const Cart = () => {
 
   return (
     <>
-      <div className="w-full h-full bg-[#ffffffb7] flex">
+      <div className="w-full h-full bg-[#ffffffb7] flex dark:bg-[#080F1D]">
         <div className="py-8">
           {data1.map((el) => (
             <div

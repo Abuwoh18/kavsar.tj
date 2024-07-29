@@ -25,7 +25,7 @@ export default function SwiperSlice() {
             disableOnInteraction: false,
           }}
           modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
-          className="mySwiper"
+          className="mySwiperHeader"
         >
           <SwiperSlide>
             <img

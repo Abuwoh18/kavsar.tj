@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const Api = "http://localhost:3000";
+const Api = "http://localhost:3000/data";
 
 export const getData = createAsyncThunk("todoList/getData", async () => {
-  const data = await axios.get(`${Api}/data`);
+  const data = await axios.get(Api);
   return data.data;
 });
 
@@ -16,13 +16,13 @@ const TodoListSlice = createSlice({
   },
   reducers: {
     setSearch: (state, action) => {
-      state.search = action.payload
-    }
+      state.search = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getData.fulfilled, (state, action) => {
       state.data = action.payload;
-    });
+    })
   },
 });
 

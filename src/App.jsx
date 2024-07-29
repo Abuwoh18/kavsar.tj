@@ -1,6 +1,13 @@
 import React, { Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Cart, GetById, Home, Layout, Login } from "./routes/routes";
+import {
+  Cart,
+  GetById,
+  Home,
+  Layout,
+  Login,
+  Product,
+} from "./routes/routes";
 import AuthCheck from "./utils/authCheck/authCheck";
 import ProtectedRout from "./utils/protectedRoutes/protectedRoutes";
 
@@ -27,6 +34,14 @@ const App = () => {
               <ProtectedRout>
                 <Home />
               </ProtectedRout>
+            </Suspense>
+          ),
+        },
+        {
+          path: "/product",
+          element: (
+            <Suspense fallback="loading">
+              <Product />
             </Suspense>
           ),
         },

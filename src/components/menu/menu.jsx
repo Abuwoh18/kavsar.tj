@@ -61,10 +61,10 @@ export function NestedMenu() {
   return (
     <Menu className="relative">
       <MenuHandler>
-        <Button className="flex items-center justify-between text-[#8e8d8d] w-[120px] py-[12px] bg-[white] border border-gray-300 shadow-md text-[16px] font-mono">
-          <span className="flex items-center">
+        <Button className="flex items-center justify-between text-[#1a3274] w-[120px] py-[12px] bg-[white] border border-gray-300 shadow-md text-[16px] font-mono dark:bg-[#080F1D] dark:text-[white] ab1:hidden">
+          <span className="flex items-center px-[10px]">
             <svg
-              className="w-6 h-6 mr-2 ml-3"
+              className="w-6 h-6 mr-2"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -88,7 +88,6 @@ export function NestedMenu() {
             open={openMenu}
             handler={setOpenMenu}
             allowHover
-            // offset={15}
           >
             <MenuHandler>
               <MenuItem
